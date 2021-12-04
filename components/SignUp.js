@@ -14,7 +14,8 @@ export default class SignUp extends ValidationComponent {
     this.state = {
       name: '',
       email: '',
-      ageGroup: '',
+      mobilenumber:'',
+      gender: '',
       password: '',
       confirmPassword: '',
       snackBarVisible: false,
@@ -41,7 +42,8 @@ export default class SignUp extends ValidationComponent {
     this.validate({
       name: { minlength: 3, maxlength: 25, required: true },
       email: { email: true, required: true },
-      ageGroup: { required: true },
+      mobilenumber:{required:true},
+      gender: { required: true },
       password: { required: true },
       confirmPassword: { equalPassword: this.state.password, required: true },
     });
@@ -110,15 +112,24 @@ hideSnackBar = () => {
           />
 
           <View style={styles.divider}></View>
-          <Text style={styles.label}>Age Group</Text>
+
+          <Text style={styles.label}>Mobile Number</Text>
+          <TextInput
+            style={styles.inputField}
+            keyboardType="numeric"
+            placeholder="Enter your phone number"
+            value={this.state.mobilenumber}
+            onChangeText={(mobilenumber) => this.setState({ mobilenumber })}
+          />
+
+          <Text style={styles.label}>Gender</Text>
           <Picker
                 style={styles.inputField}
                 selectedValue={this.state.ageGroup}
                 onValueChange={(ageGroup, itemIndex) => this.setState({ ageGroup })}>
                 <Picker.Item label="" value="" />
-                <Picker.Item label="1-4" value="1-4" />
-                <Picker.Item label="5-12" value="5-12" />
-                <Picker.Item label="13-18" value="13-18" />
+                <Picker.Item label="male" value="male" />
+                <Picker.Item label="female" value="female" />
            </Picker>
 
            <View style={styles.divider}></View>
